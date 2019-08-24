@@ -17,7 +17,11 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api/v1'], function ()use ($router){
 
-    $router->post('places/query', ['uses' => 'ApiController@searchByQuery']);
-    $router->post('places/location', ['uses' => 'ApiController@searchByLocation']);
+    $router->group([ 'prefix' => 'auth' ], function() use ($router) {
+
+        $router->post( 'login', [ 'uses' => 'AuthController@authenticate' ]);
+        $router->post( 'register', [ 'uses' => 'UsersController@register' ]);
+
+    });
 
 });
