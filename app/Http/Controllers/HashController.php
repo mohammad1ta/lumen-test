@@ -35,19 +35,17 @@ class HashController extends Controller
      */
     public function encode() {
 
-        $variable = $this->request->variable;
-        $hash = Utility::encode( $variable );
+        $hash = Utility::encode();
 
-        $log_output = [
-            'string'    => $variable,
+        $output = [
             'hash'    => $hash
         ];
 
         $monolog = new \Monolog\Logger( 'hash-kit' );
 
-        $monolog->info( 'Encoded string', $log_output );
+        $monolog->info( 'Encoded string', $output );
 
-        return response()->json( [ "hash" => $hash ] );
+        return response()->json( $output );
 
     }
 
