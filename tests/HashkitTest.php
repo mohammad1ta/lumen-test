@@ -18,7 +18,7 @@ class HashkitTest extends TestCase
             'variable' => "Hellooooo"
         ];
 
-        $this->json( 'POST', '/hash', $vars )
+        $this->json( 'GET', '/hash', $vars )
             ->log( 'generate-hash' )
             ->seeStatusCode(200)
             ->seeJsonStructure([ 'hash' ]);
