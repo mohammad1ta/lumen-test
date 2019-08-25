@@ -15,13 +15,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api/v1'], function ()use ($router){
 
-    $router->group([ 'prefix' => 'auth' ], function() use ($router) {
+$router->post( 'login', [ 'uses' => 'AuthController@authenticate' ]);
+$router->post( 'register', [ 'uses' => 'UsersController@register' ]);
 
-        $router->post( 'login', [ 'uses' => 'AuthController@authenticate' ]);
-        $router->post( 'register', [ 'uses' => 'UsersController@register' ]);
-
-    });
-
-});
+$router->post( 'hash', [ 'uses' => 'HashController@encode' ]);
+//$router->post( 'hash_decode', [ 'uses' => 'HashController@decode' ]);
